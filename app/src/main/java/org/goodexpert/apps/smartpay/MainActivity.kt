@@ -8,16 +8,24 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import com.github.zsoltk.compose.backpress.BackPressHandler
+import org.goodexpert.apps.smartpay.ui.theme.AppLocalProvider
 import org.goodexpert.apps.smartpay.ui.theme.SmartPayTheme
 
 class MainActivity : ComponentActivity() {
+    private val backPressHandler = BackPressHandler()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            SmartPayTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+            AppLocalProvider(
+                backPressHandler = backPressHandler
+            ) {
+                SmartPayTheme {
+                    // A surface container using the 'background' color from the theme
+                    Surface(color = MaterialTheme.colors.background) {
+                        Greeting("Android")
+                    }
                 }
             }
         }

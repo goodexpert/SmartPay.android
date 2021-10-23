@@ -58,6 +58,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview:1.0.4")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.activity:activity-compose:1.3.1")
+    implementation("com.github.zsoltk:compose-router:0.28.0")
     testImplementation("junit:junit:4.+")
     androidTestImplementation("androidx.test.ext:junit:1.1.3")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
