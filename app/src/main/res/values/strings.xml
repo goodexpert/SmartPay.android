@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Smart Pay</string>
+
+    <string name="btn_purchase_with_new_card">Purchase with New Card</string>
 </resources>
