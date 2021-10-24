@@ -2,7 +2,10 @@ package org.goodexpert.apps.smartpay.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val ChateauGreen = Color(0xFF39AE59)
+val DarkCerulean = Color(0xFF154486)
+val PattensBlue = Color(0xFFD4E8F1)
+val PureBlack = Color.Black
+val PureRed = Color.Red
+val PureWhite = Color.White
+val WildWillow = Color(0xFFC6D270)
