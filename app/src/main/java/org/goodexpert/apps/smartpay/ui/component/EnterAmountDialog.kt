@@ -52,6 +52,7 @@ fun EnterAmountDialog(
             TextButton(onClick = onDone) {
                 Text(
                     text = stringResource(id = R.string.btn_confirm),
+                    modifier = Modifier.testTag("confirmButton"),
                     color = MaterialTheme.colors.secondary,
                     style = MaterialTheme.typography.button
                 )

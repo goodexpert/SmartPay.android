@@ -14,7 +14,7 @@ class MotoViewModel @Inject constructor(
     private val service: Service
 ) : BaseViewModel<MotoViewModel.Event, MotoViewModel.State, MotoViewModel.Effect>() {
     sealed class Event : UiEvent {
-        data class Purchase(val amount: Number, val cardDetails: CardDetails, val isRecurring: Boolean) : Event()
+        data class Purchase(val amount: Number, val cardDetails: CardDetails) : Event()
     }
 
     data class State(
@@ -43,18 +43,19 @@ class MotoViewModel @Inject constructor(
 
     private fun onPurchase(event: Event.Purchase) {
         viewModelScope.launch {
-            if (event.isRecurring) {
+            if (event.cardDetails.isRecurring) {
                 repository.save(event.cardDetails)
             }
 
             val result = service.purchase(event.amount, event.cardDetails)
+            Thread.sleep(2000L)
             sendEffect { Effect.PurchasedResult(result) }
         }
     }
 
-    fun purchase(amount: Number, cardDetails: CardDetails, isRecurring: Boolean = false) {
+    fun purchase(amount: Number, cardDetails: CardDetails) {
         viewModelScope.launch {
-            postEvent(Event.Purchase(amount, cardDetails, isRecurring))
+            postEvent(Event.Purchase(amount, cardDetails))
         }
     }
 }

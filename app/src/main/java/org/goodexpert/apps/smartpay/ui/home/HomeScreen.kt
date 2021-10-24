@@ -12,10 +12,13 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import kotlinx.coroutines.launch
 import org.goodexpert.apps.smartpay.R
+import org.goodexpert.apps.smartpay.ui.Routing
 import org.goodexpert.apps.smartpay.ui.theme.buttonLarge
 import org.goodexpert.apps.smartpay.ui.theme.paddingNone
 import org.goodexpert.apps.smartpay.ui.theme.paddingSmall
@@ -23,9 +26,11 @@ import org.goodexpert.apps.smartpay.ui.util.ThemedPreview
 
 @Composable
 fun HomeScreen(
-    onClick: () -> Unit,
+    navigationTo: (Routing) -> Unit,
     contentPadding: PaddingValues
 ) {
+    val coroutineScope = rememberCoroutineScope()
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -33,7 +38,11 @@ fun HomeScreen(
         verticalArrangement = Arrangement.Center
     ) {
         TextButton(
-            onClick = onClick,
+            onClick = {
+                coroutineScope.launch {
+                    navigationTo(Routing.EnterAmount)
+                }
+            },
             modifier = Modifier
                 .fillMaxWidth()
                 .height(buttonLarge)
@@ -52,7 +61,7 @@ fun HomeScreen(
 fun PreviewHomeScreen() {
     ThemedPreview {
         HomeScreen(
-            onClick = { },
+            navigationTo = { },
             contentPadding = paddingNone
         )
     }
