@@ -14,6 +14,7 @@ import androidx.compose.ui.res.stringResource
 import com.github.zsoltk.compose.router.Router
 import kotlinx.coroutines.launch
 import org.goodexpert.apps.smartpay.R
+import org.goodexpert.apps.smartpay.ui.purchase.PurchaseScreen
 import org.goodexpert.apps.smartpay.ui.component.ActionBar
 import org.goodexpert.apps.smartpay.ui.component.EnterAmountDialog
 import org.goodexpert.apps.smartpay.ui.home.HomeScreen
@@ -94,8 +95,16 @@ fun MainContent(
                     is Routing.EnterAmount -> {
                         EnterAmountDialog(
                             onConfirm = {
+                                backStack.replace(Routing.PurchaseScreen(it))
                             },
                             onDismiss = onDismiss
+                        )
+                    }
+                    is Routing.PurchaseScreen -> {
+                        PurchaseScreen(
+                            onDismiss = onDismiss,
+                            amount = routing.amount,
+                            contentPadding = contentPadding
                         )
                     }
                     else -> {

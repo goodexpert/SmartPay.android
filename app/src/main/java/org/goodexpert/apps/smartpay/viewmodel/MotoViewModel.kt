@@ -2,6 +2,7 @@ package org.goodexpert.apps.smartpay.viewmodel
 
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.goodexpert.apps.smartpay.model.CardDetails
 import org.goodexpert.apps.smartpay.repository.Repository
@@ -48,7 +49,7 @@ class MotoViewModel @Inject constructor(
             }
 
             val result = service.purchase(event.amount, event.cardDetails)
-            Thread.sleep(2000L)
+            delay(1000L)
             sendEffect { Effect.PurchasedResult(result) }
         }
     }

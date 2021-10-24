@@ -1,5 +1,6 @@
 package org.goodexpert.apps.smartpay.repository
 
+import kotlinx.coroutines.delay
 import org.goodexpert.apps.smartpay.model.CardDetails
 
 interface Repository {
@@ -9,7 +10,7 @@ interface Repository {
 class MotoRepository : Repository {
 
     override suspend fun save(cardDetails: CardDetails): CardDetails? {
-        Thread.sleep(1000L)
+        delay(1000L)
         return null
     }
 }

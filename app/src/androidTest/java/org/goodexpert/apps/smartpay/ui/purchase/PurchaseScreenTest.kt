@@ -1,8 +1,7 @@
-package org.goodexpert.apps.smartpay.ui
+package org.goodexpert.apps.smartpay.ui.purchase
 
 import androidx.compose.ui.test.assertContentDescriptionContains
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.filter
 import androidx.compose.ui.test.hasSetTextAction
 import androidx.compose.ui.test.hasTestTag
@@ -10,23 +9,22 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onChildAt
 import androidx.compose.ui.test.onChildren
 import androidx.compose.ui.test.onFirst
-import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performImeAction
 import androidx.compose.ui.test.performTextInput
 import androidx.compose.ui.test.printToLog
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.goodexpert.apps.smartpay.MainActivity
+import org.goodexpert.apps.smartpay.ui.theme.paddingNone
 import org.goodexpert.apps.smartpay.ui.util.ThemedPreview
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
 @HiltAndroidTest
-class SmartPayAppTest {
-    val tag = SmartPayAppTest::class.java.simpleName
+class PurchaseScreenTest {
+    val tag = PurchaseScreenTest::class.java.simpleName
 
     @get:Rule(order = 0)
     var hiltRule = HiltAndroidRule(this)
@@ -39,39 +37,35 @@ class SmartPayAppTest {
         hiltRule.inject()
         composeTestRule.setContent {
             ThemedPreview {
-                MainContent()
+                PurchaseScreen(
+                    onDismiss = { },
+                    amount = 200.0,
+                    contentPadding = paddingNone
+                )
             }
         }
     }
 
     @Test
-    fun smartPayAppTest() {
+    fun purchaseScreenTest() {
         composeTestRule
-            .onNodeWithText("Purchase with New Card")
+            .onNode(hasTestTag("amount"), true)
             .assertIsDisplayed()
-            .performClick()
 
-        Thread.sleep(500L)
-        composeTestRule
-            .onNode(hasTestTag("textField"), true)
-            .also { node ->
-                node.performTextInput("200.00")
-                node.assertTextEquals("200.00")
-            }
+        composeTestRule.onRoot().printToLog(tag)
+        Thread.sleep(1000L)
+    }
 
-        Thread.sleep(500L)
-        composeTestRule
-            .onNode(hasTestTag("confirmButton"), true)
-            .performClick()
-
-        Thread.sleep(500L)
-        val containerPan = composeTestRule
+    @Test
+    fun purchaseScreenTest_visualTransformationCardPan() {
+        val container = composeTestRule
             .onNode(hasTestTag("pan"), true)
             .onChildren()
             .filter(hasTestTag("container"))
             .onFirst()
 
-        containerPan
+        Thread.sleep(500L)
+        container
             .onChildren()
             .filter(hasSetTextAction())
             .onFirst()
@@ -80,14 +74,20 @@ class SmartPayAppTest {
                 node.assertContentDescriptionContains("5456-****-****-5670")
             }
 
-        Thread.sleep(500L)
-        val containerExpiry = composeTestRule
+        composeTestRule.onRoot().printToLog(tag)
+        Thread.sleep(1000L)
+    }
+
+    @Test
+    fun purchaseScreenTest_visualTransformationExpiryDate() {
+        val container = composeTestRule
             .onNode(hasTestTag("expiryDate"), true)
             .onChildren()
             .filter(hasTestTag("container"))
             .onFirst()
 
-        containerExpiry
+        Thread.sleep(500L)
+        container
             .onChildren()
             .filter(hasSetTextAction())
             .onFirst()
@@ -96,14 +96,20 @@ class SmartPayAppTest {
                 node.assertContentDescriptionContains("10/24")
             }
 
-        Thread.sleep(500L)
-        val containerCvv = composeTestRule
+        composeTestRule.onRoot().printToLog(tag)
+        Thread.sleep(1000L)
+    }
+
+    @Test
+    fun purchaseScreenTest_visualTransformationCvv() {
+        val container = composeTestRule
             .onNode(hasTestTag("cvv"), true)
             .onChildren()
             .filter(hasTestTag("container"))
             .onFirst()
 
-        containerCvv
+        Thread.sleep(500L)
+        container
             .onChildren()
             .filter(hasSetTextAction())
             .onFirst()
@@ -112,13 +118,19 @@ class SmartPayAppTest {
                 node.assertContentDescriptionContains("123")
             }
 
-        Thread.sleep(500L)
+        composeTestRule.onRoot().printToLog(tag)
+        Thread.sleep(1000L)
+    }
+
+    @Test
+    fun purchaseScreenTest_changeMotoType() {
         val comboBox = composeTestRule
             .onNode(hasTestTag("motoType"), true)
             .assertIsDisplayed()
             .assertContentDescriptionContains("SINGLE MOTO")
             .performClick()
 
+        Thread.sleep(500L)
         composeTestRule
             .onNode(hasTestTag("comboBoxList"), true)
             .assertExists()
@@ -130,6 +142,6 @@ class SmartPayAppTest {
         comboBox.assertContentDescriptionContains("RECURRING MOTO")
 
         composeTestRule.onRoot().printToLog(tag)
-        Thread.sleep(5000L)
+        Thread.sleep(1000L)
     }
 }

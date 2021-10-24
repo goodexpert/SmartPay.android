@@ -9,6 +9,9 @@
     <string name="btn_no">No</string>
     <string name="btn_yes">Yes</string>
 
+    <string name="message_purchase_error">Couldn\'t make your purchase</string>
+    <string name="message_purchase_success">Purchase Success</string>
+
     <string name="label_enter_an_amount">Enter an amount</string>
     <string name="label_enter_card_pan">Enter CARD PAN</string>
     <string name="label_expiry_date">EXPIRY Date</string>
@@ -19,6 +22,8 @@
 
     <string name="label_moto_type_single">SINGLE MOTO</string>
     <string name="label_moto_type_recurring">RECURRING MOTO</string>
+
+    <string name="label_processing">Processing...</string>
 
     <string name="title_enter_an_amount">Enter an amount</string>
     <string name="title_moto_trans_type">Moto Trans Type</string>

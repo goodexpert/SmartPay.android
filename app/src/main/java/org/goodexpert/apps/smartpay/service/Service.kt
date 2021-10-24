@@ -5,6 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
 import org.goodexpert.apps.smartpay.model.CardDetails
 import java.io.Closeable
 import java.io.IOException
@@ -95,7 +96,7 @@ abstract class BaseService : Service {
 class MotoService @Inject constructor() : BaseService() {
 
     override suspend fun purchase(amount: Number, cardDetails: CardDetails): Boolean {
-        Thread.sleep(1000L)
+        delay(1000L)
         return true
     }
 }
