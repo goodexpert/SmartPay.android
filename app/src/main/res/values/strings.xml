@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">Smart Pay</string>
 
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_card_entry">Card Entry</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_continue">Continue</string>
     <string name="btn_purchase_with_new_card">Purchase with New Card</string>
+    <string name="btn_no">No</string>
+    <string name="btn_yes">Yes</string>
+
+    <string name="label_enter_an_amount">Enter an amount</string>
+    <string name="label_enter_card_pan">Enter CARD PAN</string>
+    <string name="label_expiry_date">EXPIRY Date</string>
+    <string name="label_security_code">Security Code</string>
+    <string name="label_select_moto_type">Select MOTO Type</string>
+    <string name="label_stored_credentials">Stored Credentials</string>
+    <string name="label_card_stored_on_file">Card Stored on File?</string>
+
+    <string name="label_moto_type_single">SINGLE MOTO</string>
+    <string name="label_moto_type_recurring">RECURRING MOTO</string>
+
+    <string name="title_enter_an_amount">Enter an amount</string>
+    <string name="title_moto_trans_type">Moto Trans Type</string>
 </resources>
